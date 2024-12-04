@@ -10,36 +10,95 @@ body {
 }
 
 main {
-  background-color: rgb(34, 34, 34);
+  background-color: rgb(27, 27, 27);
   height: 100%;
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
-  gap:10%;
+  gap:10px;
+  overflow-x: hidden;
+  
 }
 header{
   color: white;
   font-family: sans-serif;
-  font-weight: 300;
-  text-transform: uppercase;
-  font-size: 2vw;
+  width: 100%;
 }
+header h1{
+  /* margin-bottom: 18px; */
+  font-weight: 400;
+  text-transform: uppercase;
+  font-size: 30px;
+  width: fit-content;
+  margin: 0 auto;
+  padding: 0 8px;
+  text-align: center;
+}
+.pianoSelection{
+  width: fit-content;
+  margin: 20px auto;
 
+}
+/* select piano button */
+header button{
+  margin: 4px 8px;
+  padding: 10px 16px;
+  font-size: 18px;
+  background-color: rgba(41, 40, 40, 0.979);
+  color: white;
+  text-transform: uppercase;
+  cursor: pointer;
+  border: none;
+  border-radius: 20px;
+}
+button:hover{
+  background-color: black;
+}
+button:active{
+  background-color: black;
+  color: yellow;
+  scale: 1.2;
+}
+/*default piano style*/
 .piano {
-  width: 80%;
-  /* height: 70%; */
+  width: 70%;
+  max-width: 1200px;
+  min-width:600px; 
   aspect-ratio: 24/10;
-  /* max-width: 628px; */
   position: relative;
-  /* display: flex; */
+}
+.piano.piano88key{
+  width: 85%;
+  max-width: 1800px;
+  min-width: 1300px;
+}
+.piano.piano76key{
+  width: 80%;
+  max-width: 1800px;
+  min-width:1300px; 
+}
+.piano.piano61key{
+  width: 75%;
+  max-width: 1800px;
+  min-width:1300px; 
+}
+.piano.piano49key{
+  width: 80%;
+  max-width: 1800px;
+  min-width:800px; 
+}
+.piano.piano32key{
+  width: 70%;
+  max-width: 1200px;
+  min-width:600px; 
 }
 .key{
   cursor: pointer;
 }
 .key:active{
-  /* opacity: .8; */
+  opacity: .9;
   scale: .95;
   transform-origin: top center;
 }
@@ -56,20 +115,41 @@ header{
   flex: 1;
 }
 
+/*default black container size*/ 
 .bk-container{
   position: absolute;
   display: flex;
-  justify-content: space-between;
-  width:80%;
+  gap:.6em;
+  width:100%;
   height: 55%;
   left:50%;
   transform: translateX(-50%);
   top:0;
+  padding: 0 1.4em;
 }
-
+.bk-container.piano88key{
+  padding: 0 1.2em;
+  gap:8px;
+}
+.bk-container.piano76key{
+  padding: 0 1.5em;
+  gap:9px;
+}
+.bk-container.piano61key{
+  gap:.4em;
+  padding: 0 1.2em;
+}
+.bk-container.piano49key{
+  gap:.28em;
+  padding: 0 1.28em;
+}
+.bk-container.piano32key{
+  gap:.6em;
+  padding: 0 1.4em;
+}
 .key.accidental {
   height: 100%;
-  width: 10%;
+  width: 100%;
   background-color: black;
 }
 

@@ -31,35 +31,35 @@ pianoSelectionButtons.addEventListener("click", (e) => {
     NEW_NOTE_DETAILS = newNoteDetails();
     pianoKeysArray();
     pianoKeyNoteElements();
-    loadUI();
+    loadUI(selectedPiano);
   } else if (selectedPianoId === "piano49key") {
     selectedPiano = selectedPianoId;
     NOTE_DETAILS = noteDetails(selectedPiano, availablePianos);
     NEW_NOTE_DETAILS = newNoteDetails();
     pianoKeysArray();
     pianoKeyNoteElements();
-    loadUI();
+    loadUI(selectedPiano);
   } else if (selectedPianoId === "piano61key") {
     selectedPiano = selectedPianoId;
     NOTE_DETAILS = noteDetails(selectedPiano, availablePianos);
     NEW_NOTE_DETAILS = newNoteDetails();
     pianoKeysArray();
     pianoKeyNoteElements();
-    loadUI();
+    loadUI(selectedPiano);
   } else if (selectedPianoId === "piano76key") {
     selectedPiano = selectedPianoId;
     NOTE_DETAILS = noteDetails(selectedPiano, availablePianos);
     NEW_NOTE_DETAILS = newNoteDetails();
     pianoKeysArray();
     pianoKeyNoteElements();
-    loadUI();
+    loadUI(selectedPiano);
   } else if (selectedPianoId === "piano88key") {
     selectedPiano = selectedPianoId;
     NOTE_DETAILS = noteDetails(selectedPiano, availablePianos);
     NEW_NOTE_DETAILS = newNoteDetails();
     pianoKeysArray();
     pianoKeyNoteElements();
-    loadUI();
+    loadUI(selectedPiano);
   } else {
     console.log("no-event raised");
   }
@@ -189,7 +189,7 @@ pianoKeysArray(); //initialize with default
 let naturalKeyNoteElements = [];
 let accidentalKeyNoteElements = [];
 function pianoKeyNoteElements() {
-  naturalKeyNoteElements=[];//restting
+  naturalKeyNoteElements=[];//resetting
   console.log("Array of natural elements: ", naturalKeyNoteElements);
   //creating naturalkeyNoteElements with their respective attributes
   naturalKeysArray.forEach((item) => {
@@ -229,10 +229,15 @@ const accidentalKeysContainer = document.createElement("div");
 accidentalKeysContainer.classList.add("bk-container");
 //loading the div elemts on UI
 window.addEventListener("DOMContentLoaded", () => {
-  loadUI(); //initialize with default
+  loadUI(selectedPiano); //initialize with default
 });
 //function to load UI
-function loadUI() {
+function loadUI(pianoType) {
+  //reset selected piano styling
+  resetPianoType(pianoContainer);
+
+  //add styling to the piano based on piano selected
+  pianoContainer.classList.add(pianoType)
   pianoContainer.innerHTML = "";
   // Clear individual containers for natural and accidental keys
   naturalKeysContainer.innerHTML = "";
@@ -246,4 +251,13 @@ function loadUI() {
   accidentalKeyNoteElements.forEach((element) => {
     accidentalKeysContainer.appendChild(element);
   });
+}
+
+//function to reset/clear selected piano
+function resetPianoType(pianoContainer){
+  pianoContainer.classList.forEach((cls)=>{
+    if(cls !== "piano"){
+      pianoContainer.classList.remove(cls);
+    }
+  })
 }
