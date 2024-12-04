@@ -68,7 +68,7 @@ button.active {
   position: relative;
 }
 .piano.piano88key {
-  width: 85%;
+  width: 95%;
   max-width: 1800px;
   min-width: 1300px;
 }
@@ -94,6 +94,20 @@ button.active {
 }
 .key {
   cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center; 
+  padding: 4px 0;
+}
+.key .noteNoteValue{
+  color: red;
+}
+.accidental h5{
+  font-size: .6em;
+}
+.accidental .noteKeyPress{
+  color: white;
 }
 .key:active {
   opacity: 0.9;
@@ -127,7 +141,7 @@ button.active {
 }
 .bk-container.piano88key {
   padding: 0 1.2em;
-  gap: 8px;
+  gap: 4px;
 }
 .bk-container.piano76key {
   padding: 0 1.5em;

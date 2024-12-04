@@ -25,10 +25,10 @@ const pianoSelectionButtons = document.querySelector(".pianoSelection");
 //using event delegation to handle events
 pianoSelectionButtons.addEventListener("click", (e) => {
   //remove active state from button (reset)
-  [...pianoSelectionButtons.children].forEach((child)=>{
+  [...pianoSelectionButtons.children].forEach((child) => {
     child.classList.remove("active");
   });
-  //add active state to button 
+  //add active state to button
   e.target.classList.add("active");
 
   //handle click event to render respective piano
@@ -169,7 +169,7 @@ function newNoteDetails() {
   return NEW_NOTE_DETAILS;
 }
 
-// Ensure it's updated after selecting a piano
+//
 NEW_NOTE_DETAILS = newNoteDetails(); // Initialize with default
 
 //Creating diffrenet arrays for natural keys and blackKeys
@@ -201,7 +201,7 @@ function pianoKeyNoteElements() {
   console.log("Array of natural elements: ", naturalKeyNoteElements);
   //creating naturalkeyNoteElements with their respective attributes
   naturalKeysArray.forEach((item) => {
-    naturalKeyNoteElements.push(createKeyNote(item.note, item.type));
+    naturalKeyNoteElements.push(createKeyNote(item.note, item.type, item.key));
   });
 
   //An array to store the blackKeyNote (Html) Elements that will be loaded/rendered in the DOM
@@ -209,20 +209,41 @@ function pianoKeyNoteElements() {
   console.log("Array of accidental elements: ", accidentalKeyNoteElements);
   //creating accidentalkeyNoteElements with their respective attributes
   accidentalKeysArray.forEach((item) => {
-    accidentalKeyNoteElements.push(createKeyNote(item.note, item.type));
+    accidentalKeyNoteElements.push(
+      createKeyNote(item.note, item.type, item.key)
+    );
   });
 }
 pianoKeyNoteElements(); //initialize with default
 
 //function for creating any type of keyNoteElement
-function createKeyNote(noteValue, keyType) {
+function createKeyNote(noteValue, noteType, noteKey) {
   const note = document.createElement("div");
+  //classes for styling
   note.classList.add("key");
-  note.classList.add(keyType);
+  //attribute
   note.setAttribute("data-note", noteValue);
+
+  //inner content of note
+  //Note of key to be displayed
+  const noteNoteValue = document.createElement("h5");
+  noteNoteValue.textContent = noteValue;
+  noteNoteValue.classList.add("noteNoteValue");
+
+  //key value (to be used) on the key itself
+  const noteKeyPress = document.createElement("h5");
+  noteKeyPress.textContent = noteKey;
+  noteKeyPress.classList.add("noteKeyPress");
+
+  //class to decide whether black or white
+  note.classList.add(noteType);
+
+  //accidental as empty for styling.
   if (noteValue === "empty") {
     note.classList.add("emptyBlack");
   }
+  note.appendChild(noteNoteValue);
+  note.appendChild(noteKeyPress);
   return note;
 }
 
