@@ -1,3 +1,4 @@
+//data of notes
 const NOTE_DETAILS = [
   { note: "C", key: "Z", frequency: 261.626 },
   { note: "Db", key: "S", frequency: 277.183 },
@@ -14,18 +15,21 @@ const NOTE_DETAILS = [
 ];
 
 //creating HTML elements based on data-notes
+
+//Getting the paino app
 const pianoContainer = document.querySelector(".piano");
 
 //An array to store the KeyNote (Html) Elements that will be loaded/rendered in the DOM
 let keyNoteElements = [];
+console.log("Array of elmts: ", keyNoteElements);
 
+//creating keyNoteElements with their respective attributes
 NOTE_DETAILS.forEach((item) => {
-  //Determining the class type of KeyNote Element
-  let keyClass="";
-    (item.note.length===1) ? keyClass="white" : "black";
-  keyNoteElements.push(createKeyNote(item.note, item));
+  //Determining the (class) type of KeyNote Element
+  let keyType;
+  item.note.length === 1 ? (keyType = "white") : (keyType = "black");
+  keyNoteElements.push(createKeyNote(item.note, keyType));
 });
-
 //function for creating any type of keyNoteElement
 function createKeyNote(noteValue, noteType) {
   const note = document.createElement("div");
@@ -34,3 +38,10 @@ function createKeyNote(noteValue, noteType) {
   note.setAttribute("data-note", noteValue);
   return note;
 }
+
+//loading the div elemts on UI
+window.addEventListener("DOMContentLoaded",()=>{
+    keyNoteElements.forEach((element)=>{
+        pianoContainer.appendChild(element);
+    });
+})

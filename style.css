@@ -8,3 +8,39 @@ body {
   height: 100%;
   width: 100%;
 }
+
+main {
+  background-color: pink;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.piano {
+  background-color: orange;
+  width: 70%;
+  height: 40%;
+  max-width: 628px;
+  display: flex;
+}
+
+.key{
+
+}
+.key.white{
+    height: 100%;
+    background-color: white;
+    border: 1px solid grey;
+    flex:1;
+}
+
+.key.black{
+    position: absolute;
+    margin: 0 20px;
+    height: 180px;
+    width: 80px;
+    border: 1px solid red;
+    background-color: black;
+}
