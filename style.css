@@ -19,28 +19,51 @@ main {
 }
 
 .piano {
-  background-color: orange;
   width: 70%;
   height: 40%;
   max-width: 628px;
-  display: flex;
+  position: relative;
+  /* display: flex; */
 }
-
 .key{
-
+  cursor: pointer;
 }
-.key.white{
-    height: 100%;
-    background-color: white;
-    border: 1px solid grey;
-    flex:1;
+.key:active{
+  /* opacity: .8; */
+  scale: .95;
+  transform-origin: top center;
 }
 
-.key.black{
-    position: absolute;
-    margin: 0 20px;
-    height: 180px;
-    width: 80px;
-    border: 1px solid red;
-    background-color: black;
+.wk-container {
+  display: flex;
+  height: 100%;
+  width: 100%;
+}
+.key.white {
+  height: 100%;
+  background-color: white;
+  border: 1px solid grey;
+  flex: 1;
+}
+
+.bk-container{
+  position: absolute;
+  display: flex;
+  justify-content: space-between;
+  width:80%;
+  height: 55%;
+  left:50%;
+  transform: translateX(-50%);
+  top:0;
+}
+
+.key.black {
+  height: 100%;
+  width: 10%;
+  background-color: black;
+}
+
+.key.black.emptyBlack{
+  visibility: hidden;
+  pointer-events: none;
 }

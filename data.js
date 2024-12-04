@@ -19,6 +19,8 @@ const NOTE_DETAILS = [
 //Getting the paino app
 const pianoContainer = document.querySelector(".piano");
 
+
+
 //An array to store the KeyNote (Html) Elements that will be loaded/rendered in the DOM
 let keyNoteElements = [];
 console.log("Array of elmts: ", keyNoteElements);
@@ -30,6 +32,7 @@ NOTE_DETAILS.forEach((item) => {
   item.note.length === 1 ? (keyType = "white") : (keyType = "black");
   keyNoteElements.push(createKeyNote(item.note, keyType));
 });
+
 //function for creating any type of keyNoteElement
 function createKeyNote(noteValue, noteType) {
   const note = document.createElement("div");
