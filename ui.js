@@ -24,6 +24,14 @@ let NOTE_DETAILS = piano32key;
 const pianoSelectionButtons = document.querySelector(".pianoSelection");
 //using event delegation to handle events
 pianoSelectionButtons.addEventListener("click", (e) => {
+  //remove active state from button (reset)
+  [...pianoSelectionButtons.children].forEach((child)=>{
+    child.classList.remove("active");
+  });
+  //add active state to button 
+  e.target.classList.add("active");
+
+  //handle click event to render respective piano
   const selectedPianoId = e.target.id;
   if (selectedPianoId === "piano32key") {
     selectedPiano = selectedPianoId;
@@ -189,7 +197,7 @@ pianoKeysArray(); //initialize with default
 let naturalKeyNoteElements = [];
 let accidentalKeyNoteElements = [];
 function pianoKeyNoteElements() {
-  naturalKeyNoteElements=[];//resetting
+  naturalKeyNoteElements = []; //resetting
   console.log("Array of natural elements: ", naturalKeyNoteElements);
   //creating naturalkeyNoteElements with their respective attributes
   naturalKeysArray.forEach((item) => {
@@ -197,7 +205,7 @@ function pianoKeyNoteElements() {
   });
 
   //An array to store the blackKeyNote (Html) Elements that will be loaded/rendered in the DOM
-  accidentalKeyNoteElements = [];//resetting
+  accidentalKeyNoteElements = []; //resetting
   console.log("Array of accidental elements: ", accidentalKeyNoteElements);
   //creating accidentalkeyNoteElements with their respective attributes
   accidentalKeysArray.forEach((item) => {
@@ -237,7 +245,7 @@ function loadUI(pianoType) {
   resetPianoType(pianoContainer);
 
   //add styling to the piano based on piano selected
-  pianoContainer.classList.add(pianoType)
+  pianoContainer.classList.add(pianoType);
   pianoContainer.innerHTML = "";
   // Clear individual containers for natural and accidental keys
   naturalKeysContainer.innerHTML = "";
@@ -254,10 +262,10 @@ function loadUI(pianoType) {
 }
 
 //function to reset/clear selected piano
-function resetPianoType(pianoContainer){
-  pianoContainer.classList.forEach((cls)=>{
-    if(cls !== "piano"){
+function resetPianoType(pianoContainer) {
+  pianoContainer.classList.forEach((cls) => {
+    if (cls !== "piano") {
       pianoContainer.classList.remove(cls);
     }
-  })
+  });
 }
