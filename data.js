@@ -1,4 +1,4 @@
-const NOTE_DETAILS_32_KEYS = [
+export const NOTE_DETAILS_32_KEYS = [
   {
     note: "C2",
     key: "Z",
@@ -258,7 +258,7 @@ const NOTE_DETAILS_32_KEYS = [
 ];
 
 //49 keys piano
-const NOTE_DETAILS_49_KEYS = [
+export const NOTE_DETAILS_49_KEYS = [
   {
     note: "C2",
     key: "Z",
@@ -653,9 +653,8 @@ const NOTE_DETAILS_49_KEYS = [
   },
 ];
 
-
 //61 keys piano
-const NOTE_DETAILS_61_KEYS = [
+export const NOTE_DETAILS_61_KEYS = [
   {
     note: "C2",
     key: "Z",
@@ -1146,9 +1145,8 @@ const NOTE_DETAILS_61_KEYS = [
   },
 ];
 
-
 //76 keys piano
-const NOTE_DETAILS_76_KEYS = [
+export const NOTE_DETAILS_76_KEYS = [
   {
     note: "E1",
     key: "Z",
@@ -1760,7 +1758,7 @@ const NOTE_DETAILS_76_KEYS = [
 ];
 
 //88 keys piano
-const NOTE_DETAILS_88_KEYS = [
+export const NOTE_DETAILS_88_KEYS = [
   {
     note: "A0",
     key: "Z",
