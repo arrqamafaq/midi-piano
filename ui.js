@@ -7,7 +7,7 @@ import {
 } from "./data.js";
 
 //arrsy of availabel pianos
-const availablePianos = [
+ export const availablePianos = [
   { id: "piano32key", details: piano32key },
   { id: "piano49key", details: piano49key },
   { id: "piano61key", details: piano61key },
@@ -17,7 +17,7 @@ const availablePianos = [
 
 //determining which piano has been selected
 //by default 32key piano
-let selectedPiano = "piano32key";
+export let selectedPiano = "piano32key";
 let NOTE_DETAILS = piano32key;
 
 //function to handle which piano has been clicked
