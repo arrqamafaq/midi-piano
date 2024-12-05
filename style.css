@@ -61,11 +61,12 @@ button.active {
 }
 /*default piano style*/
 .piano {
-  width: 70%;
+  /* width: 70%;
   max-width: 1200px;
-  min-width: 600px;
+  min-width: 600px; */
   aspect-ratio: 24/10;
   position: relative;
+  overflow-x: auto;
 }
 .piano.piano88key {
   width: 95%;
@@ -73,12 +74,12 @@ button.active {
   min-width: 1300px;
 }
 .piano.piano76key {
-  width: 80%;
+  width: 85%;
   max-width: 1800px;
   min-width: 1300px;
 }
 .piano.piano61key {
-  width: 75%;
+  width: 80%;
   max-width: 1800px;
   min-width: 1300px;
 }
@@ -89,7 +90,7 @@ button.active {
 }
 .piano.piano32key {
   width: 70%;
-  max-width: 1200px;
+  max-width: 1300px;
   min-width: 600px;
 }
 .key {
@@ -99,6 +100,7 @@ button.active {
   justify-content: flex-end;
   align-items: center; 
   padding: 4px 0;
+  user-select: none;
 }
 .key .noteNoteValue{
   color: red;
@@ -108,6 +110,7 @@ button.active {
 }
 .accidental .noteKeyPress{
   color: white;
+  font-size: .8em;
 }
 .key:active {
   opacity: 0.9;
@@ -131,33 +134,31 @@ button.active {
 .bk-container {
   position: absolute;
   display: flex;
-  gap: 0.6em;
   width: 100%;
   height: 55%;
   left: 50%;
   transform: translateX(-50%);
   top: 0;
-  padding: 0 1.4em;
 }
-.bk-container.piano88key {
+.piano88key .bk-container {
   padding: 0 1.2em;
   gap: 4px;
 }
-.bk-container.piano76key {
+.piano76key .bk-container {
   padding: 0 1.5em;
   gap: 9px;
 }
-.bk-container.piano61key {
+.piano61key .bk-container{
   gap: 0.4em;
   padding: 0 1.2em;
 }
-.bk-container.piano49key {
+.piano49key .bk-container {
   gap: 0.28em;
   padding: 0 1.28em;
 }
-.bk-container.piano32key {
+.piano32key .bk-container  {
   gap: 0.6em;
-  padding: 0 1.4em;
+  padding: 0 2em;
 }
 .key.accidental {
   height: 100%;
