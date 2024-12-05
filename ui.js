@@ -7,7 +7,7 @@ import {
 } from "./data.js";
 
 //arrsy of availabel pianos
- export const availablePianos = [
+export const availablePianos = [
   { id: "piano32key", details: piano32key },
   { id: "piano49key", details: piano49key },
   { id: "piano61key", details: piano61key },
@@ -17,63 +17,70 @@ import {
 
 //determining which piano has been selected
 //by default 32key piano
-export let selectedPiano = "piano32key";
+let selectedPiano = "piano32key";
+export let selectedPianoNoteDetails = piano32key;
 let NOTE_DETAILS = piano32key;
+let NEW_NOTE_DETAILS = [];
+//natural keys
+let naturalKeysArray = [];
+//accidental keys
+let accidentalKeysArray = [];
+pianoKeysArray(); //initialize with default
 
+//creating HTML elements based on data-notes
+
+let naturalKeyNoteElements = [];
+let accidentalKeyNoteElements = [];
+
+pianoKeyNoteElements(); //initialize with default
+
+//Getting the paino app
+const pianoContainer = document.querySelector(".piano");
+//creating whitekeys-container
+const naturalKeysContainer = document.createElement("div");
+naturalKeysContainer.classList.add("wk-container");
+
+//creating blackkeys-container
+const accidentalKeysContainer = document.createElement("div");
+accidentalKeysContainer.classList.add("bk-container");
+
+setPiano(selectedPiano);
+function getSelectedPiano() {
+  return selectedPiano;
+}
 //function to handle which piano has been clicked
 const pianoSelectionButtons = document.querySelector(".pianoSelection");
 //using event delegation to handle events
 pianoSelectionButtons.addEventListener("click", (e) => {
-  //remove active state from button (reset)
-  [...pianoSelectionButtons.children].forEach((child) => {
+   //remove active state from button (reset)
+   [...pianoSelectionButtons.children].forEach((child) => {
     child.classList.remove("active");
   });
-  //add active state to button
-  e.target.classList.add("active");
-
-  //handle click event to render respective piano
-  const selectedPianoId = e.target.id;
-  if (selectedPianoId === "piano32key") {
-    selectedPiano = selectedPianoId;
-    NOTE_DETAILS = noteDetails(selectedPiano, availablePianos);
-    NEW_NOTE_DETAILS = newNoteDetails();
-    pianoKeysArray();
-    pianoKeyNoteElements();
-    loadUI(selectedPiano);
-  } else if (selectedPianoId === "piano49key") {
-    selectedPiano = selectedPianoId;
-    NOTE_DETAILS = noteDetails(selectedPiano, availablePianos);
-    NEW_NOTE_DETAILS = newNoteDetails();
-    pianoKeysArray();
-    pianoKeyNoteElements();
-    loadUI(selectedPiano);
-  } else if (selectedPianoId === "piano61key") {
-    selectedPiano = selectedPianoId;
-    NOTE_DETAILS = noteDetails(selectedPiano, availablePianos);
-    NEW_NOTE_DETAILS = newNoteDetails();
-    pianoKeysArray();
-    pianoKeyNoteElements();
-    loadUI(selectedPiano);
-  } else if (selectedPianoId === "piano76key") {
-    selectedPiano = selectedPianoId;
-    NOTE_DETAILS = noteDetails(selectedPiano, availablePianos);
-    NEW_NOTE_DETAILS = newNoteDetails();
-    pianoKeysArray();
-    pianoKeyNoteElements();
-    loadUI(selectedPiano);
-  } else if (selectedPianoId === "piano88key") {
-    selectedPiano = selectedPianoId;
-    NOTE_DETAILS = noteDetails(selectedPiano, availablePianos);
-    NEW_NOTE_DETAILS = newNoteDetails();
-    pianoKeysArray();
-    pianoKeyNoteElements();
-    loadUI(selectedPiano);
-  } else {
-    console.log("no-event raised");
-  }
-  console.log("Selected_Piano", selectedPiano);
+    //add active state to button
+    e.target.classList.add("active");
+  setPiano(e.target.id);
 });
 
+function setPiano(id){
+  //handle click event to render respective piano
+
+  selectedPiano = id;
+  NOTE_DETAILS = noteDetails(selectedPiano, availablePianos);
+  NEW_NOTE_DETAILS = newNoteDetails();
+  pianoKeysArray();
+  pianoKeyNoteElements();
+  loadUI(selectedPiano);
+  console.log("Selected_Piano", selectedPiano);
+  availablePianos.forEach((piano) => {
+    if (piano.id === getSelectedPiano()) {
+      selectedPianoNoteDetails = piano.details;
+      selectedPianoNoteDetails.forEach((item) => {
+        item.active = false;
+      });
+      console.log("Selected piano note details:", selectedPianoNoteDetails);
+    }
+  });
+}
 //note data to choose based on  selected piano
 function noteDetails(selectedPiano, availablePianos) {
   availablePianos.forEach((piano) => {
@@ -140,7 +147,6 @@ function noteDetails(selectedPiano, availablePianos) {
 // ];
 
 //Creating a new NoteArray for handling empty divs (Where no accidental keys will be present)
-let NEW_NOTE_DETAILS = [];
 function newNoteDetails() {
   NEW_NOTE_DETAILS = []; //clear existing content
   for (let i = 0; i < NOTE_DETAILS.length - 1; i++) {
@@ -174,10 +180,7 @@ NEW_NOTE_DETAILS = newNoteDetails(); // Initialize with default
 
 //Creating diffrenet arrays for natural keys and blackKeys
 
-//natural keys
-let naturalKeysArray = [];
-//accidental keys
-let accidentalKeysArray = [];
+
 function pianoKeysArray() {
   naturalKeysArray = [];
   naturalKeysArray = NEW_NOTE_DETAILS.filter((arr) => arr.type === "natural");
@@ -190,12 +193,7 @@ function pianoKeysArray() {
   );
   console.log("Array of accidental keys", accidentalKeysArray);
 }
-pianoKeysArray(); //initialize with default
 
-//creating HTML elements based on data-notes
-
-let naturalKeyNoteElements = [];
-let accidentalKeyNoteElements = [];
 function pianoKeyNoteElements() {
   naturalKeyNoteElements = []; //resetting
   console.log("Array of natural elements: ", naturalKeyNoteElements);
@@ -214,7 +212,7 @@ function pianoKeyNoteElements() {
     );
   });
 }
-pianoKeyNoteElements(); //initialize with default
+
 
 //function for creating any type of keyNoteElement
 function createKeyNote(noteValue, noteType, noteKey) {
@@ -247,15 +245,7 @@ function createKeyNote(noteValue, noteType, noteKey) {
   return note;
 }
 
-//Getting the paino app
-const pianoContainer = document.querySelector(".piano");
-//creating whitekeys-container
-const naturalKeysContainer = document.createElement("div");
-naturalKeysContainer.classList.add("wk-container");
 
-//creating blackkeys-container
-const accidentalKeysContainer = document.createElement("div");
-accidentalKeysContainer.classList.add("bk-container");
 //loading the div elemts on UI
 window.addEventListener("DOMContentLoaded", () => {
   loadUI(selectedPiano); //initialize with default

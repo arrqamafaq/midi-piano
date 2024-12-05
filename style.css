@@ -102,6 +102,9 @@ button.active {
   padding: 4px 0;
   user-select: none;
 }
+.key h5{
+  pointer-events: none;
+}
 .key .noteNoteValue{
   color: red;
 }
